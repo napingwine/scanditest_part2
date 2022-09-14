@@ -1,0 +1,92 @@
+:root {
+    --progress-bar-primary-text-color: #fff;
+    --progress-bar-primary-color: #ff3b30;
+    --progress-bar-secondary-color: #979797;
+    --progress-bar-background-color: #f0f0f0;
+
+    --animation-transition: all 0.4s ease-in-out;
+}
+
+.progressbar-wrapper {
+    width: 100vw;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: var(--progress-bar-background-color);
+}
+
+.step-list {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    max-width: var(--content-wrapper-width);
+    margin: 0 auto;
+    padding: 0 15px;
+
+    li {
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        list-style: none;
+        margin: 0 10px;
+
+        &.current-item .progress-count {
+            transition: var(--animation-transition);
+            background-color: var(--progress-bar-primary-color);
+
+            &::before {
+                transition: var(--animation-transition);
+                background-color: var(--progress-bar-primary-color);
+            }
+        }
+
+        .progress-count {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 15px;
+            height: 15px;
+            width: 15px;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            background-color: var(--progress-bar-secondary-color);
+            color: var(--progress-bar-primary-text-color);
+            border: 5px solid var(--progress-bar-background-color);
+
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                right: 35px;
+                width: 100vw;
+                height: 3px;
+                background-color: var(--progress-bar-secondary-color);
+            }
+        }
+
+        &:first-child.current-item .progress-count::after {
+            transition: var(--animation-transition);
+            background-color: var(--progress-bar-primary-color);
+        }
+
+        &:first-child .progress-count:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 35px;
+            width: 100vw;
+            height: 3px;
+            background-color: var(--progress-bar-secondary-color);
+        }
+
+        &::before {
+            content: '';
+        }
+
+        .progress-label {
+            text-transform: capitalize;
+        }
+    }
+
+}
